@@ -1,7 +1,5 @@
 package Java.Programmers.level1;
 
-import javax.lang.model.util.ElementScanner14;
-
 public class 짝수와홀수 {
     public static void main(String [] args){
         짝수와홀수 s = new 짝수와홀수();
@@ -9,7 +7,7 @@ public class 짝수와홀수 {
     }
     public String solution(int num){
         String answer = "Odd";
-        if (num%2==1)
+        if (num%2 != 0)
             return answer;
         else
             return "Even";
