@@ -1,4 +1,4 @@
-package This_is_codingtest.곱하기혹은더하기;
+package Java.This_is_codingtest.greedy.곱하기혹은더하기;
 
 import java.util.*;
 public class Main {

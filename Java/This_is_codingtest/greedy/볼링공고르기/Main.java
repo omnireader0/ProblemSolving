@@ -1,4 +1,4 @@
-package This_is_codingtest.볼링공고르기;
+package Java.This_is_codingtest.greedy.볼링공고르기;
 import java.util.*;
 public class Main {
     
