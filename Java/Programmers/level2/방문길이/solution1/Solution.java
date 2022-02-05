@@ -1,3 +1,5 @@
+package Java.Programmers.level2.방문길이.solution1;
+
 import java.util.*;
 class Solution {
     private int[][] direction = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}}; // LRUD

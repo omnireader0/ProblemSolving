@@ -1,5 +1,6 @@
-// sol 2-1 Arrays.sort 하면서 custom 구현된 Comparator 객체를 넣는 방법
+package Java.Programmers.level1.문자열내맘대로정렬하기.solution2;
 import java.util.*;
+// sol 2-1 Arrays.sort 하면서 custom 구현된 Comparator 객체를 넣는 방법
 
 class Solution {
     public String[] solution(String[] strings, int n) {
@@ -16,3 +17,4 @@ class Solution {
         Arrays.sort(strings, CustomComparator);
         return strings;
     }
+}

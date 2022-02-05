@@ -1,3 +1,5 @@
+package Java.Programmers.level1.소수만들기.solution1;
+
 public class Solution {
     public int solution(int[] nums) {
         int count = 0;

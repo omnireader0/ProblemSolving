@@ -1,3 +1,5 @@
+package Java.Programmers.level2.다리를지나는트럭.solution1;
+
 /*
 bridge 길이만큼 크기를 갖고 있고, 이 크기 유지
 bridge가 비어있지 않다면, 맨앞 원소 pop, 조건에 맞게 수행

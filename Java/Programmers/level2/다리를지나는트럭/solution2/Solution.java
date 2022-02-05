@@ -1,3 +1,5 @@
+package Java.Programmers.level2.다리를지나는트럭.solution2;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ArrayList;

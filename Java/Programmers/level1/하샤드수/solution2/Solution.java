@@ -1,3 +1,5 @@
+package Java.Programmers.level1.하샤드수.solution2;
+
 // sol2 : 합 구할 때 char -> int 형변환
 class Solution {
     public boolean solution(int x) {

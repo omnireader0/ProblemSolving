@@ -1,3 +1,5 @@
+package Java.Programmers.level2.구명보트.solution2;
+
 import java.util.*;
 class Solution {
     public int solution(int[] people, int limit) {

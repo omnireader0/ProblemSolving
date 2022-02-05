@@ -1,3 +1,5 @@
+package Java.Programmers.level2.기능개발.solution3;
+
 import java.util.*;
 
 class Solution {

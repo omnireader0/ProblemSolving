@@ -1,3 +1,5 @@
+package Java.Programmers.level4.threexn타일링.solution1;
+
 class Solution {
     public int solution(int n) {
 

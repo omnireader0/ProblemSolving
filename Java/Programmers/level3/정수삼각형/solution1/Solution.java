@@ -1,3 +1,5 @@
+package Java.Programmers.level3.정수삼각형.solution1;
+
 class Solution {
     public int solution(int[][] triangle) {
         for (int i = triangle.length-1; i >= 0; i--) {

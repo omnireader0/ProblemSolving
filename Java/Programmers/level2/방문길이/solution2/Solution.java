@@ -1,3 +1,5 @@
+package Java.Programmers.level2.방문길이.solution2;
+
 // sol2 : 방문 표시를 set으로 처리
 import java.util.*;
 class Solution {

@@ -1,3 +1,5 @@
+package Java.Programmers.level2.위장.solution1;
+
 import java.util.*;
 class Solution {
     public int solution(String[][] clothes) {

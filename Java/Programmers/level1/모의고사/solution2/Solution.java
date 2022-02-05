@@ -1,3 +1,5 @@
+package Java.Programmers.level1.모의고사.solution2;
+
 import java.util.*;
 class Solution {
     

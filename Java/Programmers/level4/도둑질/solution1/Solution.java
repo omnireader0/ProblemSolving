@@ -1,3 +1,5 @@
+package Java.Programmers.level4.도둑질.solution1;
+
 import java.util.*;
 class Solution {
     public int solution(int[] money) {

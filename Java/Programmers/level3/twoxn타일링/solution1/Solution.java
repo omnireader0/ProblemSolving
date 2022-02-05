@@ -1,3 +1,4 @@
+package Java.Programmers.level3.twoxn타일링.solution1;
 class Solution {
     public int solution(int n) {
         int[] dp = new int[n+1];

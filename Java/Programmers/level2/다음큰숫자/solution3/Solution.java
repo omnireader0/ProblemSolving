@@ -1,3 +1,5 @@
+package Java.Programmers.level2.다음큰숫자.solution3;
+
 public class Solution {
     public int solution(int n){
         int count = countOne(n);

@@ -1,3 +1,5 @@
+package Java.Programmers.level2.다음큰숫자.solution2;
+
 // sol2 : bitCount 대신 함수 구현
 public class Solution {
     public int solution(int n) {

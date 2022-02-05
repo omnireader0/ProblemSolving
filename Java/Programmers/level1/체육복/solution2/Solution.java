@@ -1,3 +1,5 @@
+package Java.Programmers.level1.체육복.solution2;
+
 import java.util.*;
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {

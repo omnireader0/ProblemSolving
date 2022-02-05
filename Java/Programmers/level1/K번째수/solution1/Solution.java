@@ -1,3 +1,5 @@
+package Java.Programmers.level1.K번째수.solution1;
+
 import java.util.*;
 public class Solution {
     public int[] solution(int[] array, int[][] commands){

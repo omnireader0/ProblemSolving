@@ -1,3 +1,5 @@
+package Java.Programmers.level2.더맵게.solution1;
+
 import java.util.PriorityQueue;
 class Solution {
     public int solution(int[] scoville, int K) {

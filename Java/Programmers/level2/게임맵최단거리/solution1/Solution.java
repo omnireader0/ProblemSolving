@@ -1,3 +1,5 @@
+package Java.Programmers.level2.게임맵최단거리.solution1;
+
 import java.util.*;
 class Solution {
     

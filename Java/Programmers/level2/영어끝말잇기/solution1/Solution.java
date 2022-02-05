@@ -1,3 +1,5 @@
+package Java.Programmers.level2.영어끝말잇기.solution1;
+
 import java.util.*;
 public class Solution {
     public int[] solution(int n, String[] words) {

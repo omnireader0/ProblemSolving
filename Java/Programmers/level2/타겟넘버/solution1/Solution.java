@@ -1,3 +1,5 @@
+package Java.Programmers.level2.타겟넘버.solution1;
+
 import java.util.*;
 class Solution {
     public int solution(int[] numbers, int target) {

@@ -1,3 +1,5 @@
+package Java.Programmers.level3.입국심사.solution1;
+
 import java.util.*;
 class Solution {
     public long solution(int n, int[] times) {

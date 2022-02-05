@@ -1,3 +1,5 @@
+package Java.Programmers.level2.전화번호목록.solution1;
+
 import java.util.*;
 class Solution {
     public boolean solution(String[] phone_book) {

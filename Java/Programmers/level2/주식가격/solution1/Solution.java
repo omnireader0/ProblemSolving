@@ -1,3 +1,5 @@
+package Java.Programmers.level2.주식가격.solution1;
+
 class Solution {
     public int[] solution(int[] prices) {
         int[] answer = new int[prices.length];

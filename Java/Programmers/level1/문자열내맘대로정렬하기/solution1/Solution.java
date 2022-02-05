@@ -1,3 +1,5 @@
+package Java.Programmers.level1.문자열내맘대로정렬하기.solution1;
+
 import java.util.*;
 public class Solution {
     public String[] solution(String[] strings, int n) {

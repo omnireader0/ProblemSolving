@@ -1,3 +1,5 @@
+package Java.Programmers.level2.방문길이.solution3;
+
 import java.util.*;
 class Solution {
     

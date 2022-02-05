@@ -1,8 +1,10 @@
+package Java.Programmers.level2.다음큰숫자.solution1;
+
 public class Solution {
-    public int solution(int n) {	    public int solution(int n) {
-        int answer = 0;	        int cnt = Integer.bitCount(n);
-        return answer;	        for(int i = n+1; ; i++){
+    public int solution(int n) {
+        int cnt = Integer.bitCount(n);
+        for(int i = n+1; ; i++){
             if (Integer.bitCount(i) == cnt) return i;
         }
-    }	    }
-}	}
+    }
+}

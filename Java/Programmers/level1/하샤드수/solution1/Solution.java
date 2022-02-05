@@ -1,3 +1,5 @@
+package Java.Programmers.level1.하샤드수.solution1;
+
 class Solution {
     public boolean solution(int x) {
         char [] ch = String.valueOf(x).toCharArray();

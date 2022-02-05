@@ -1,3 +1,5 @@
+package Java.Programmers.level2.스킬트리.solution2;
+
 class Solution {
     public int solution(String skill, String[] skill_trees) {
         int answer = 0;
