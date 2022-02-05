@@ -24,7 +24,7 @@ class Solution {
                 students[i]++;
             }
         }
-        // 강사님 방법 
+        // 다른 방법 
         // return (int) Arrays.stream(students).filter(i -> i>0).count();
 
         for (int i = 1; i <= n; i++) {
