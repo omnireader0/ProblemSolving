@@ -51,6 +51,7 @@ public class Main {
             answer = Math.min(answer, dist);
             return;
         }
+        // 백트래킹
         for (int i=0; i<chickens.size(); i++) {
             list.add((i) + "");
             getDistance(cnt+1, i+1, list);

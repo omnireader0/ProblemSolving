@@ -5,7 +5,6 @@ def function(p):
     
     u, v = '', ''
     cnt = 0
-    
     for i in range(len(p)):
         cnt = cnt + 1 if p[i] == '(' else cnt - 1
         if cnt == 0:
@@ -26,7 +25,6 @@ def function(p):
 def correct_bracket(u):
     
     stack = []
-    
     for i in u:
         if i == '(':
             stack.append('(')
@@ -41,7 +39,6 @@ def correct_bracket(u):
 def reverse_bracket(u):
     
     s = ''
-    
     for i in u:
         s = s + ')' if i == '(' else s + '('
     return s
