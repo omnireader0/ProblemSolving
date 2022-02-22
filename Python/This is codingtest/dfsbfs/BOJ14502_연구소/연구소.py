@@ -32,7 +32,7 @@ def get_space():
                 space += 1
     return space
     
-def dfs(cnt):
+def make_wall(cnt):
     global answer
     # 벽 3개 만들면 바이러스 퍼뜨리기와 안전영역 구하기
     if cnt == 3:
@@ -54,10 +54,10 @@ def dfs(cnt):
                 map[i][j] = 1
                 cnt += 1
                 #print(1, map)
-                dfs(cnt)
+                make_wall(cnt)
                 map[i][j] = 0
                 #print(2, map)
                 cnt -= 1
                 
-dfs(0)
+make_wall(0)
 print(answer)
