@@ -15,7 +15,7 @@ def check(answer):
 def solution(n, build_frame):
     answer = []
     for frame in build_frame: 
-        x, y, equipment, oper = frame
+        x, y, equip, oper = frame
         if oper == 0: # 삭제
             answer.remove([x, y, equip])
             if not check(answer):
