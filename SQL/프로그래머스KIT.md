@@ -63,7 +63,7 @@ LIMIT 1
 
 ## SUM, MAX, MIN
 
-#### 최댓값 구하기
+#### 최댓값 구하기 🤔
 
 ~~~sql
 SELECT DATETIME AS 시간 FROM ANIMAL_INS
@@ -86,7 +86,7 @@ SELECT MIN(DATETIME) AS 시간 FROM ANIMAL_INS
 SELECT COUNT(*) FROM ANIMAL_INS
 ~~~
 
-#### 중복 제거하기
+#### 중복 제거하기 🤔
 
 ~~~sql
 SELECT COUNT(DISTINCT NAME) FROM ANIMAL_INS 
@@ -99,27 +99,64 @@ WHERE NAME IS NOT NULL
 
 ## GROUP BY
 
-#### 고양이와 개는 몇 마리 있을까
+#### 고양이와 개는 몇 마리 있을까 🤔
 
 ~~~~sql
-
+SELECT ANIMAL_TYPE, COUNT(ANIMAL_TYPE)
+FROM ANIMAL_INS
+GROUP BY ANIMAL_TYPE
+ORDER BY ANIMAL_TYPE
 ~~~~
 
-#### 동명 동물 수 찾기
+#### 동명 동물 수 찾기 😵
 
 ~~~~sql
-
+SELECT NAME, COUNT(NAME) AS COUNT
+FROM ANIMAL_INS
+WHERE NAME IS NOT NULL
+GROUP BY NAME
+HAVING COUNT >= 2
+ORDER BY NAME
 ~~~~
 
-#### 입양 시각 구하기 1
+#### 입양 시각 구하기 1 😵
 
 ~~~~sql
-
+SELECT HOUR(DATETIME) AS HOUR, COUNT(HOUR(DATETIME)) AS COUNT
+FROM ANIMAL_OUTS
+WHERE HOUR(DATETIME) > 8 AND HOUR(DATETIME) < 20
+GROUP BY HOUR(DATETIME)
+ORDER BY 1
 ~~~~
 
-#### 입양 시각 구하기 2
+#### 입양 시각 구하기 2 😵 😵
+
+ https://velog.io/@ljs7463/MySQL-%EC%9E%85%EC%96%91-%EC%8B%9C%EA%B0%81-%EA%B5%AC%ED%95%98%EA%B8%B02
+
+SET을 이용해 0~23의 테이블을 생성
+
+SET은 어떤 값을 넣어줄 때 사용, @는 변수명 앞에 위치, :=는 대입
+
+~~~sql
+SET @HOUR = -1;
+SELECT (@HOUR := @HOUR +1) AS HOUR
+FROM ANIMAL_OUTS
+WHERE @HOUR < 23;
+~~~
+
+COUNT한 테이블 생성
+
+HOUR(DATETIME)= @HOUR 일때 COUNT한 값을 SELECT 하게 한다.
 
 ~~~~sql
+SET @HOUR := -1; # 변수선언
+
+SELECT (@HOUR := @HOUR +1) AS HOUR,
+(SELECT COUNT(*) FROM ANIMAL_OUTS WHERE HOUR(DATETIME) = @HOUR) AS COUNT 
+FROM ANIMAL_OUTS
+WHERE @HOUR < 23
+
+----
 
 ~~~~
 
@@ -128,45 +165,107 @@ WHERE NAME IS NOT NULL
 #### 이름이 없는 동물의 아이디
 
 ~~~~sql
-
+SELECT ANIMAL_ID FROM ANIMAL_INS
+WHERE NAME IS NULL
+ORDER BY ANIMAL_ID
 ~~~~
 
 #### 이름이 있는 동물의 아이디
 
 ~~~~sql
-
+SELECT ANIMAL_ID FROM ANIMAL_INS
+WHERE NAME IS NOT NULL
+ORDER BY ANIMAL_ID
 ~~~~
 
-#### NULL 처리하기
+#### NULL 처리하기 🤔
 
 ~~~~sql
-
+SELECT ANIMAL_TYPE, IFNULL(NAME, 'No name') AS NAME, 
+SEX_UPON_INTAKE 
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID
 ~~~~
 
 ## JOIN
 
-#### 없어진 기록 찾기
+- LEFT JOIN, RIGHT JOIN 기준
+
+결과가 왼쪽 테이블 전체 데이터 대상이라면 left를 ,오른쪽 테이블의 전체 데이터가 대상이라면 right를 사용합니다.
+
+- LEFT JOIN : A와 B테이블 조인하는데, B에 매핑되는 값이 있든 말든 A는 모두 나옴
+
+A left join B on (a.id = b.id)
+
+#### 없어진 기록 찾기 😵
 
 ~~~~sql
-
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_OUTS
+WHERE ANIMAL_ID NOT IN (
+    SELECT ANIMAL_ID FROM ANIMAL_INS
+)
+   
+----
+SELECT A.ANIMAL_ID, A.NAME
+FROM ANIMAL_OUTS A
+LEFT JOIN ANIMAL_INS B
+ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE B.ANIMAL_ID IS NULL
 ~~~~
 
-#### 있었는데요 없었습니다
+#### 있었는데요 없었습니다 😵
+
+나는 조인으로 품
 
 ~~~~sql
-
+SELECT INS.ANIMAL_ID, INS.NAME
+FROM ANIMAL_INS AS INS
+LEFT JOIN ANIMAL_OUTS AS OUTS
+ON INS.ANIMAL_ID = OUTS.ANIMAL_ID
+WHERE INS.DATETIME > OUTS.DATETIME
+ORDER BY INS.DATETIME;
+----
+SELECT A.ANIMAL_ID, A.NAME
+FROM ANIMAL_INS A
+JOIN ANIMAL_OUTS B
+ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE A.DATETIME > B.DATETIME
+ORDER BY A.DATETIME
 ~~~~
 
-#### 오랜 기간 보호한 동물 1
+#### 오랜 기간 보호한 동물 1 😵
 
 ~~~~sql
-
+SELECT A.NAME, A.DATETIME
+FROM ANIMAL_INS A
+LEFT JOIN ANIMAL_OUTS B
+ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE B.ANIMAL_ID IS NULL
+ORDER BY A.DATETIME
+LIMIT 3
 ~~~~
 
-#### 보호소에서 중성화한 동물
+#### 보호소에서 중성화한 동물 😵
 
 ~~~~sql
+SELECT A.ANIMAL_ID, A.ANIMAL_TYPE, A.NAME
+FROM ANIMAL_INS A
+JOIN ANIMAL_OUTS B
+ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE A.SEX_UPON_INTAKE LIKE 'Intact%' 
+AND (B.SEX_UPON_OUTCOME LIKE 'Spayed%' 
+OR B.SEX_UPON_OUTCOME LIKE'Neutered%')
+ORDER BY A.ANIMAL_ID
 
+----
+
+SELECT DISTINCT AI.ANIMAL_ID, AI.ANIMAL_TYPE, AI.NAME
+FROM ANIMAL_INS AS AI
+JOIN ANIMAL_OUTS AS AO
+ON AI.ANIMAL_ID = AO.ANIMAL_ID
+WHERE AI.SEX_UPON_INTAKE != AO.SEX_UPON_OUTCOME
+ORDER BY AI.ANIMAL_ID ASC
 ~~~~
 
 ## String, Date
@@ -174,30 +273,45 @@ WHERE NAME IS NOT NULL
 #### 루시와 엘라 찾기
 
 ~~~~sql
-
+SELECT ANIMAL_ID, NAME, SEX_UPON_INTAKE
+FROM ANIMAL_INS
+WHERE NAME IN ('Lucy', 'Ella', 'Pickle', 'Rogan', 'Sabrina', 'Mitty')
 ~~~~
 
 #### 이름에 el이 들어가는 동물 찾기
 
 ~~~~sql
-
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_INS
+WHERE NAME LIKE '%EL%' AND ANIMAL_TYPE = 'DOG'
+ORDER BY NAME
 ~~~~
 
-#### 중성화 여부 파악하기
+#### 중성화 여부 파악하기 🤔
 
 ~~~~sql
-
+SELECT ANIMAL_ID, NAME, IF(SEX_UPON_INTAKE LIKE 'Intact%', 'X', 'O') AS '중성화'
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID
 ~~~~
 
-#### 오랜 기간 보호한 동물 2
+#### 오랜 기간 보호한 동물 2 🤔
 
 ~~~~sql
-
+SELECT A.ANIMAL_ID, A.NAME
+FROM ANIMAL_INS A
+JOIN ANIMAL_OUTS B
+ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE B.DATETIME IS NOT NULL
+ORDER BY A.DATETIME - B.DATETIME
+LIMIT 2
 ~~~~
 
-#### DATETIME에서 DATE로 형 변환
+#### DATETIME에서 DATE로 형 변환 🤔
 
 ~~~~sql
-
+SELECT ANIMAL_ID, NAME,  DATE_FORMAT(DATETIME, '%Y-%m-%d')
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID
 ~~~~
 
