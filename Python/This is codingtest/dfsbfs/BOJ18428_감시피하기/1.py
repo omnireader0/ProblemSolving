@@ -1,3 +1,4 @@
+# 실패한 코드
 from itertools import combinations
 from collections import deque
 from copy import deepcopy
@@ -6,7 +7,7 @@ n = int(input())
 corrider = list(list(map(str, input().split())) for _ in range(n))
 spaces = []
 teachers = []
-students = []
+# students = []
 
 for i in range(n):
     for j in range(n):
@@ -14,36 +15,38 @@ for i in range(n):
             spaces.append([i,j])
         if corrider[i][j] == 'T':
             teachers.append([i,j])
-        if corrider[i][j] == 'S':
-            students.append([i,j])
-dx = [0, 0, 0, 0]
+        # if corrider[i][j] == 'S':
+        #     students.append([i,j])
+dx = [0, 0, -1, 1]
 dy = [-1, 1, 0, 0]
 
 def visit():
     copy_corrider = deepcopy(corrider)
     for x, y in teachers:
-        bfs(copy_corrider, x, y)
-    for x, y in students:
-        if copy_corrider[x][y] != 'S':
-            return False
-    return True
+        check = bfs(copy_corrider, x, y)
+        if  check:
+            print(copy_corrider, '-')
+            return True
+    print(copy_corrider)
+    return False
 
 def bfs(copy_corrider, x, y):
     q = deque()
-    q.append([x, y])
-    while q:
-        a, b = q.popleft()
-        for i in range(4):
+    for i in range(4):
+        q.append([x, y])
+        while q:
+            a, b = q.popleft()
             nx = a + dx[i]
             ny = b + dy[i]
-    
             if 0 <= nx < n and 0 <= ny < n:
-                if copy_corrider[nx][ny] == 'S':
+                print(nx, ny)
+                if copy_corrider[nx][ny] == 'X':
+                    copy_corrider[nx][ny] = 'T'
+                    q.append([nx, ny])
+                elif copy_corrider[nx][ny] == 'S':
                     return False
                 elif copy_corrider[nx][ny] == 'O':
-                    break
-                copy_corrider[nx][ny] = "T"
-                q.append([nx, ny])
+                    break  
             else:
                 break
     return True
@@ -55,11 +58,12 @@ for firewall in firewall_combi:
     for x, y in firewall:
         corrider[x][y] = 'O'
     if visit():
-        print('YES')
+        flag = True
         break
     for x, y in firewall:
         corrider[x][y] = 'X'
            
+if flag : print("YES") 
 else : print("NO")
 
 # [['S', 'S', 'S', 'T'], ['O', 'O', 'O', 'X'], ['X', 'X', 'X', 'X'], ['T', 'T', 'T', 'X']]
