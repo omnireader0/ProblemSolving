@@ -1,13 +1,13 @@
 from heapq import *
-l=[]
+heap=[]
 for _ in range(int(input())):
-    heappush(l,int(input()))
-a=0
-while len(l)>1:
-    t=heappop(l)+heappop(l)
-    a+=t
-    heappush(l,t)
-print(a)
+    heappush(heap,int(input()))
+answer=0
+while len(heap)>1:
+    data = heappop(heap)+heappop(heap)
+    answer += data
+    heappush(heap, data)
+print(answer)
 
 '''
 접근
