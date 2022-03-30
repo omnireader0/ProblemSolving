@@ -1,63 +1,53 @@
 t = int(input())
 
-def palindrom(s):
-    left, right, cnt = 0, len(s)-1,  0
-   
+def similar_palindrom(s, left, right):
     while left < right:
-        if s[left] != s[right]:
-            
-            # 왼쪽 삭제하고 비교하기
-            l, r = left, right
-            l += 1
-            
-            if l == r:
-                if cnt == 0:# abca 인 경우, b와 c의 포인터가 같아지면 아래 비교를 못함
+        if s[left] == s[right]:
+            left += 1
+            right -= 1
+        else:
+            return False
+    return True
+
+def palindrom(s, left, right):
+    # 완전 회문
+    if s == s[::-1]:
+        return 0
+    else:
+        while left < right:
+            if s[left] != s[right]:
+                temp1 = similar_palindrom(s, left+1, right)
+                temp2 = similar_palindrom(s, left, right-1)
+                
+                if temp1 or temp2:
                     return 1
-                elif cnt == 1:
+                else:
                     return 2
-            
-            while l < r:
-                if s[l] != s[r]:
-                    cnt += 1
-                    break
-                l += 1
-                r -= 1
-                
-            # 오른쪽 삭제하고 비교하기
-            l, r = left, right
-            r -= 1
-            
-            
-            
-            while l < r:
-                if s[l] != s[r]:
-                    cnt += 1
-                    break
-                l += 1
-                r -= 1
-                
-            return cnt
-            
-        left += 1
-        right -= 1
-        
-    return cnt
+            else:
+                left += 1
+                right -= 1
          
 for i in range(t):
     s = input()
-    print(palindrom(s))
-        
+    left, right = 0, len(s)-1
+    print(palindrom(s, left, right))
         
 '''
-1. 회문 함수
-- if 완전 회문인가?
+1. 풀이
+
+회문 함수
+- if 완전 회문이라면
+    리턴 1
 - else
-    - 
+    - 유사 회문 가능한지 체크
+    - 이때, 유사 회문 함수 이용
+    - 가능하면 리턴1, 가능하지 않으면 리턴2
 
-3. 문자열
+유사 회문 함수
+- 투포인터로 비교하면 됨
+- 리턴값 true or false
 
-
-4. 반례
+반례
 1
 abca
 0
