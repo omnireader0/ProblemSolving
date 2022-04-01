@@ -20,9 +20,7 @@ def rotate():
         for j in range(nn, i, -1):
             graph[j][i] = graph[j-1][i]
         graph[i+1][i] = start
-
-if r > 2*(n+m)-4:
-    r = r%(2*(n+m)-4)
+    
 for i in range(r):
     rotate()
 for i in graph:
