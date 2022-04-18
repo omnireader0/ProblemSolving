@@ -31,3 +31,9 @@ result = list(map(lambda x: -1 if x >= 1e9 else x, distance))
 length = max(result)
 
 print(result.index(length), length, result.count(length))
+
+'''
+시간 복잡도
+ElogV + 4*V = 50000*log20000 + 80000 이므로
+시간 초과 안뜸
+'''
