@@ -11,12 +11,8 @@ dc = [(-1,0), (0,-1), (0,1), (1,0)]
 visited = [[0]*m for _ in range(n)]
 
 max_value = 0
-t = 0
 def dfs(idx, value):
     global max_value
-    global t
-    t += 1
-    print(t)
     
     if idx == n*m:
         max_value = max(max_value, value)
@@ -45,8 +41,6 @@ def dfs(idx, value):
             visited[r1][c1] = 0
             visited[r2][c2] = 0
     
-    print(idx, value)
-    print(visited)
     dfs(idx+1, value)
     
 dfs(0, 0)
