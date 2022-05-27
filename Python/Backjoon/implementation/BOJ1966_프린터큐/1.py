@@ -5,20 +5,25 @@ for _ in range(t):
     q = deque(list(map(int, input().split())))
     cnt = 0
     while q:
-        now = max(q)
+        # 맨 앞에 있는 문서 인쇄하고, 시작
+        max_q = max(q)
         front = q.popleft()
         m -= 1
         
-        if now == front:
+        
+        if max_q == front:
             cnt += 1
-            if m <0:
+            # front와 중요도가 같은 문서가 여러개 일 수 있으니까
+            # m이 0보다 작다면 출력했다는 의미
+            if m < 0:
                 print(cnt)
                 break
+        
         else:
             q.append(front)
-            if m<0:
-                m = len(q)-1
-        
+            # front가 몇번째로 인쇄되는지 알고 싶은 문서였다면 m의 위치 변경
+            if m < 0:
+                m = len(q) - 1
     
 '''
 풀이
