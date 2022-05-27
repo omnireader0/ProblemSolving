@@ -12,29 +12,26 @@ def calculate(i, res, now):
         return res * now
     else:
         return int(res / now)
-        # return res // now
-      
+    
 def dfs(cnt, res):
     global oper
-    result = 0 
+    result = 0
     
     if cnt == n:
         answer.append(res)
-        return 
-    
+        return
+
     for i in range(4):
         if oper[i] > 0:
             result = calculate(i, res, numbers[cnt])
+            print(oper)
             oper[i] -= 1
             dfs(cnt+1, result)
             oper[i] += 1
-    
-    
+ 
 dfs(1, numbers[0])
 print(max(answer))
 print(min(answer))
- 
-
 
 '''
 1. 접근
