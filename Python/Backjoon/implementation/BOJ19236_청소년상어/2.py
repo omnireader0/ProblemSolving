@@ -64,7 +64,7 @@ def move(arr):
 
 def dfs(next, arr_, shark_):
     global answer, dx, dy
-    # 백트래킹을 위해 깊은 복사
+    # 깊은 복사
     arr, shark = deepcopy(arr_), deepcopy(shark_)
     
     # 물고기 잡아먹기
